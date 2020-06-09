@@ -39,15 +39,43 @@ function flipCard() {
   }
 }
 
+const timerMins = 0.5;
+let time = timerMins * 60;
+
+const timerCount = document.getElementById('timer');
+let timeDown=setInterval(startTimer, 1000);
+
+function startTimer() {
+  const minutes = Math.floor(time / 60);
+  let seconds = time % 60;
+
+  seconds = seconds < 10 ? '0' + seconds : seconds;
+
+  timerCount.innerHTML = `${minutes}: ${seconds}`;
+  time--;
+  
+  
+  
+
+  if(time == -1){
+   
+    clearInterval(timeDown);
+    cards.forEach(card => card.removeEventListener('click', flipCard));
+    alert("YOU LOSE!");
+  }
+}
+
+function firstMove(){
+  if (hasCardFlipped = false){
+      second = 30;
+      minute = 0; 
+      startTimer()
+  }
+}
+
 function resetLock() {
   [hasCardFlipped, lockGame] = [false, false];
   [firstCard, secondCard] = [null, null];
-}
-
-function congratulations(){
-  if (cards.length === 12){
-      modal.classList.add("show") 
-  }
 }
 
 (function shuffleCards() {
@@ -58,3 +86,16 @@ function congratulations(){
 })()
 
 cards.forEach(card => card.addEventListener('click', flipCard));
+
+/*
+let second = 30, minute = 0;
+let timer = document.querySelector('.timer');
+let interval;
+timer.innerHTML =  minute+'mins '+second+'secs';
+
+function startTimer(){
+    interval = setInterval(function(){
+        timer.innerHTML = minute+'mins '+second+'secs';
+        second--;
+    },1000);
+}*/
