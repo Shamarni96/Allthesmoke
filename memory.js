@@ -65,14 +65,6 @@ function startTimer() {
   }
 }
 
-function firstMove(){
-  if (hasCardFlipped = false){
-      second = 30;
-      minute = 0; 
-      startTimer()
-  }
-}
-
 function resetLock() {
   [hasCardFlipped, lockGame] = [false, false];
   [firstCard, secondCard] = [null, null];
